@@ -1,0 +1,2 @@
+# maze
+mazes in Python

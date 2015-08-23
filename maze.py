@@ -5,25 +5,25 @@ def newBlank(sizex,sizey):
     for i in range(2*sizex+1):
         temp = []
         for j in range(2*sizey+1):
-            temp.append(1)
+            temp.append(1) # 1 signifies an untouched place on the grid
         retarray.append(temp)
     return retarray
 
 def recursiveBacktrack(blank):
     sizex = (len(blank)-1)/2
     sizey = (len(blank[0])-1)/2
-    start = (1,1,'n')
+    start = (1,1,'n') # start in upper left and make an entrance to the maze from the north
     stack=[]
-    stack.append(start)
+    stack.append(start) # so, not quite recursion.  Done with a stack.
     while len(stack)>0:
         prob = random.random()
         if prob < .9:
             current = stack.pop()
-        else:
+        else:  # 10 percent of the time, pick a random spot to add a branch
             current = random.choice(stack)
             stack.remove(current)
-        blank[current[0]*2-1][current[1]*2-1]=3
-        if current[2] == 'n':
+        blank[current[0]*2-1][current[1]*2-1]=3  # 3 is a place on the actual maze
+        if current[2] == 'n':  # and add to the maze the edge from one place to the other
             blank[current[0]*2-1][current[1]*2-2]=3
         elif current[2] == 'e':
             blank[current[0]*2][current[1]*2-1]=3

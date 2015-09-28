@@ -1,5 +1,7 @@
 import random
 
+fileObj = open('./mazetext.txt','w')
+
 def newBlank(sizex,sizey):
     retarray = []
     for i in range(2*sizex+1):
@@ -105,6 +107,11 @@ def recursiveBacktrack(blank):
             random.shuffle(adjacent)
             stack = stack + adjacent
     blank[len(blank)-2][len(blank[0])-1]=3
+    for row in blank:
+        for elem in row:
+            fileObj.write(str(elem) + ',')
+        fileObj.write('\n')
+    fileObj.close()
     return blank
         
 
